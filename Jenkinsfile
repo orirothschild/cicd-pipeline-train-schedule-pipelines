@@ -1,6 +1,6 @@
 pipeline {
   agent {
-      label 'ec2'
+      label 'docker-java'
   }
   stages {
     stage ('Build') {
