@@ -1,13 +1,15 @@
 pipeline {
   agent {
-      label 'ec2'
+    label 'ec2'
   }
-  stages {
-    stage ('Build') {
-      steps {
-        echo 'Running build automation'
-        sh './gradlew build --no-daemon'
-        archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Running build automation'
+                sh './gradlew build --no-daemon'
+                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+            }
+        }
         stage('DeployToStaging') {
             when {
                 branch 'master'
@@ -71,9 +73,4 @@ pipeline {
             }
         }
     }
-}
-
-     
-   
-  }
 }
