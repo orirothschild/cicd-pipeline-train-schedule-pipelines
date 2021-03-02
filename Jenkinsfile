@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        builder('build','arty.zip')
+        builder('build','trainSchedule.zip')
       }
     }
     stage ('check logs') {
