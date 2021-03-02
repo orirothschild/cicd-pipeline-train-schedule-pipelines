@@ -2,7 +2,7 @@
 @Library('my-shared-library@master') _ //explicit call to sl
 pipeline {
   agent {
-      label 'ec2'
+    label 'ec2'
   }
   stages {
     stage ('Build') {
