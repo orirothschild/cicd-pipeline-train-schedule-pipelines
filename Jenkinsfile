@@ -1,12 +1,13 @@
 #!/usr/bin/env groovy
-libraries{
-  lib ('my-shared-library@master')
-}
+
 //@Library('my-shared-library@master') _ //explicit call to sl
 pipeline {
   agent {
     label 'ec2'
   }
+  libraries{
+  lib ('my-shared-library@master')
+}
   stages {
     stage ('Build') {
       steps {
