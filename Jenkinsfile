@@ -1,5 +1,8 @@
 #!/usr/bin/env groovy
-@Library('my-shared-library@master') _ //explicit call to sl
+libraries{
+  lib ('my-shared-library@master')
+}
+//@Library('my-shared-library@master') _ //explicit call to sl
 pipeline {
   agent {
     label 'ec2'
