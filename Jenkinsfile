@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+@Library('my-shared-library@master') _ //explicit call to sl
 pipeline {
   agent {
       label 'ec2'
@@ -5,9 +7,12 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        echo 'Running build automation'
-        sh './gradlew build --no-daemon'
-        archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+        builder('build','arty.zip')
+      }
+    }
+    stage ('check logs') {
+      steps {
+        filterLogs('Warning',1)
       }
     }
   }
