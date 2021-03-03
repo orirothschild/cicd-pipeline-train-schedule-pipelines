@@ -5,18 +5,30 @@ pipeline {
   agent {
     label 'ec2'
   }
-  libraries{
+  libraries {
   lib ('my-shared-library@master')
+  lib('jenkins-shared-libraries@master')
+}
+options {
+  ansiColor('xterm')
+  timestamps()
 }
   stages {
-    stage ('Build') {
+    // stage ('Build') {
+    //   steps {
+    //     builder('build','trainSchedule.zip')
+    //   }
+    // }
+    stage ('dockerbuild') {
       steps {
-        builder('build','trainSchedule.zip')
-      }
+        dockerBuild dockerfile:'./files/DockerFile'
+        dockerbuild imageName: 'any_name'
     }
     stage ('check logs') {
       steps {
         filterLogs('Warning',1)
+      }
+    }
       }
     }
   }
